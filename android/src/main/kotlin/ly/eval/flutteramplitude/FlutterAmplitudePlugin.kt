@@ -28,20 +28,20 @@ class FlutterAmplitudePlugin() : MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result): Unit {
         when {
             call.method == "initAmplitudeSDK" -> {
-                val apiKey = call.argument<String>("apiKey")
-                val enableLogging = call.argument<Boolean>("enableLogging")
-                val enableForegroundTracking = call.argument<Boolean>("enableForegroundTracking")
-                val enableLocationListening = call.argument<Boolean>("enableLocationListening")
+                val apiKey = call.argument<String>("apiKey")!!
+                val enableLogging = call.argument<Boolean>("enableLogging") ?: false
+                val enableForegroundTracking = call.argument<Boolean>("enableForegroundTracking") ?: true
+                val enableLocationListening = call.argument<Boolean>("enableLocationListening") ?: true
                 initSDK(apiKey, enableLogging, enableForegroundTracking, enableLocationListening)
             }
             call.method == "logEvent" -> {
-                val arguments = call.arguments as MutableMap<String, String>
-                val eventName = arguments["eventName"]!!
+                val arguments = call.arguments as MutableMap<String, Any?>
+                val eventName = arguments["eventName"]!! as String
                 arguments.remove("eventName")
                 logEvent(eventName, arguments)
             }
             call.method == "setUserProperties" -> {
-                val properties = call.arguments as MutableMap<String, String>
+                val properties = call.arguments as MutableMap<String, Any?>
                 setUserProperties(properties)
             }
             call.method == "clearUserProperties" -> {
@@ -71,7 +71,7 @@ class FlutterAmplitudePlugin() : MethodCallHandler {
         amplitude.userId = userId
     }
 
-    private fun setUserProperties(properties: Map<String, String>) {
+    private fun setUserProperties(properties: Map<String, Any?>) {
         amplitude.setUserProperties(properties.getAttributes())
     }
 
@@ -79,11 +79,11 @@ class FlutterAmplitudePlugin() : MethodCallHandler {
         amplitude.clearUserProperties()
     }
 
-    private fun logEvent(eventName: String, arguments: Map<String, String>) {
+    private fun logEvent(eventName: String, arguments: Map<String, Any?>) {
         amplitude.logEvent(eventName, arguments.getAttributes())
     }
 
-    private fun Map<String, String>.getAttributes(): JSONObject {
+    private fun Map<String, Any?>.getAttributes(): JSONObject {
         val json = JSONObject()
         this.forEach {
             json.put(it.key, it.value)

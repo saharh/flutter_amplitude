@@ -47,8 +47,8 @@ class FlutterAmplitude {
     _channel.invokeMethod('clearUserProperties');
   }
 
-  static void logEvent(String eventName, [Map<String, String> arguments]) {
-    Map<String, String> eventArguments = new Map();
+  static void logEvent(String eventName, [Map<String, dynamic> arguments]) {
+    Map<String, dynamic> eventArguments = new Map();
     eventArguments.addAll({'eventName': eventName});
     eventArguments.addAll(_generalProperties);
     if (arguments != null) {
