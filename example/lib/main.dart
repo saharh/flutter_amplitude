@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   init() async {
 
-    FlutterAmplitude.init("your_apy_key", true);
+    FlutterAmplitude.init("your api key", true, true, false);
     FlutterAmplitude.addGeneralProperties({'generalParameterKey': 'generalParameterValue'});
     FlutterAmplitude.setUserId("info@sample.com");
     FlutterAmplitude.setUserProperties({'userParameterKey': 'userParameterValue'});
