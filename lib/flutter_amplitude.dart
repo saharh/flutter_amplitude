@@ -39,8 +39,12 @@ class FlutterAmplitude {
     _channel.invokeMethod('setUserId', {'userId': userId});
   }
 
-  static void setUserProperties(Map<String, String> properties) {
+  static void setUserProperties(Map<String, dynamic> properties) {
     _channel.invokeMethod('setUserProperties', properties);
+  }
+
+  static void setUserPropertiesOnce(Map<String, String> properties) {
+    _channel.invokeMethod('setUserPropertiesOnce', properties);
   }
 
   static void clearUserProperties() {

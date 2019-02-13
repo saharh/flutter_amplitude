@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
     FlutterAmplitude.addGeneralProperties({'generalParameterKey': 'generalParameterValue'});
     FlutterAmplitude.setUserId("info@sample.com");
     FlutterAmplitude.setUserProperties({'userParameterKey': 'userParameterValue'});
+    FlutterAmplitude.setUserPropertiesOnce({'userParameterKey2': 'userParameterValue2'});
     FlutterAmplitude.logEvent("EVENT_KEY", {
       'eventParameterKey': 'eventParameterValue',
       'eventParameterInt': 5,

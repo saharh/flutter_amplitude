@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log.VERBOSE
 import com.amplitude.api.Amplitude
 import com.amplitude.api.AmplitudeClient
+import com.amplitude.api.Identify
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -44,6 +45,10 @@ class FlutterAmplitudePlugin() : MethodCallHandler {
                 val properties = call.arguments as MutableMap<String, Any?>
                 setUserProperties(properties)
             }
+            call.method == "setUserPropertiesOnce" -> {
+                val properties = call.arguments as MutableMap<String, String?>
+                setUserPropertiesOnce(properties)
+            }
             call.method == "clearUserProperties" -> {
                 clearUserProperties()
             }
@@ -73,6 +78,14 @@ class FlutterAmplitudePlugin() : MethodCallHandler {
 
     private fun setUserProperties(properties: Map<String, Any?>) {
         amplitude.setUserProperties(properties.getAttributes())
+    }
+
+    private fun setUserPropertiesOnce(properties: Map<String, String?>) {
+        val identify = Identify()
+        for (property in properties) {
+            identify.setOnce(property.key, property.value)
+        }
+        amplitude.identify(identify)
     }
 
     private fun clearUserProperties() {
