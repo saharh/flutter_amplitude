@@ -22,6 +22,8 @@
       [self setUserId:call.arguments[@"userId"]];
   } else if([@"setUserProperties" isEqualToString:call.method]){
       [self setUserProperties:call.arguments];
+  } else if([@"setUserPropertiesOnce" isEqualToString:call.method]){
+      [self setUserPropertiesOnce:call.arguments];
   } else if([@"clearUserProperties" isEqualToString:call.method]){
       [self clearUserProperties];
   } else {
@@ -47,6 +49,16 @@
 - (void)setUserProperties:(NSDictionary*)userProperties {
       [[Amplitude instance] setUserProperties:userProperties];
 }
+
+- (void)setUserPropertiesOnce:(NSDictionary*)userProperties {
+    AMPIdentify *identify = [AMPIdentify identify];
+    for (NSString *key in userProperties) {
+        NSObject *value = [userProperties objectForKey:key];
+        [identify setOnce:key value:value];
+    }
+    [[Amplitude instance] identify:identify];
+}
+
 
 - (void)clearUserProperties {
       [[Amplitude instance] clearUserProperties];
