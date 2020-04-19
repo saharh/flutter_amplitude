@@ -1,8 +1,8 @@
 PODS:
-  - Amplitude-iOS (4.5.0)
+  - Amplitude (5.1.0)
   - Flutter (1.0.0)
   - flutter_amplitude (0.0.1):
-    - Amplitude-iOS (~> 4.5.0)
+    - Amplitude
     - Flutter
 
 DEPENDENCIES:
@@ -10,8 +10,8 @@ DEPENDENCIES:
   - flutter_amplitude (from `Pods/.symlinks/plugins/flutter_amplitude/ios`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Amplitude-iOS
+  trunk:
+    - Amplitude
 
 EXTERNAL SOURCES:
   Flutter:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: Pods/.symlinks/plugins/flutter_amplitude/ios
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: 1de49103125f9b816ca11df924652e5a303e2c33
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  flutter_amplitude: a8036cd3f685daf59dc03b0e415e9d99db320e93
+  Amplitude: 1d3d18f82ba9852011aa7b9a741eac616d78fa82
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_amplitude: 6fedb5201114cad7c42e2539d6bc71c17cd29d09
 
-PODFILE CHECKSUM: 13dcf421f4da2e937a57e8ba760ed880beae536f
+PODFILE CHECKSUM: 2625e426c2d87c6d4fba226c34720c20ea3ccbb3
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.9.1
